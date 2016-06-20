@@ -1,5 +1,5 @@
 #define PRESS_SEN_PIN A2
-#define LM35_SEN_PIN2 A1
+#define LM35_SEN_PIN A1
 
 
 long time=0;
@@ -10,16 +10,13 @@ float readPressure(){
   return pressure;
 }
 
-float readTempLM35(int pin){
+float readTemp(int pin){
   float temp = analogRead(pin);
   temp = temp * 500.0/1023.0;
   return temp;
 }
 
-
-
-void setup() {
-       
+void setup() {    
    Serial.begin(9600); 
    Serial1.begin(19200);
 
@@ -28,12 +25,12 @@ void setup() {
 void loop() {
 
   float pressure=readPressure();
-  float LM35temp2 = readTempLM35(LM35_SEN_PIN2);
+  float temp = readTemp(LM35_SEN_PIN);
 
   Serial1.print(pressure);
   Serial1.print(" "); 
 
-  Serial1.print(LM35temp2);
+  Serial1.print(temp);
   Serial1.print(" "); 
  
   Serial1.println();
